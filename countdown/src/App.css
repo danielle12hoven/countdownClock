@@ -3,3 +3,12 @@
   font-size: 30px;
   margin-top: 10%;
 }
+
+.App-title {
+  font-size: 40px;
+}
+
+.Clock-hours, .Clock-days, .Clock-minutes, .Clock-seconds {
+  display: inline;
+  margin: 10px;
+}
