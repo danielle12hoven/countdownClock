@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Clock from './Clock.jsx'
 import './App.css';
+import { Form, FormControl, Button } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -19,17 +20,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-title">Countdown to {this.state.deadline}</div>
-        <div>
+        <div className="App-title">
+          Countdown to {this.state.deadline}
+        </div>
         <Clock
           deadline={this.state.deadline}
         />
-        <input
-          onChange={event => this.setState({newDeadline: event.target.value})}
-          placeholder='new date'
-        />
-        <button onClick={() => this.changeDeadline()}>Submit</button>
-        </div>
+        <Form inline={true}>
+          <FormControl className="Deadline-input"
+            onChange={event => this.setState({newDeadline: event.target.value})}
+            placeholder='new date'
+          />
+          <Button onClick={() => this.changeDeadline()}>
+            Submit
+          </Button>
+        </Form>
       </div>
 
     )
