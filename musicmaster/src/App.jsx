@@ -44,7 +44,7 @@ class App extends Component {
               value={this.state.query}
               onChange={event => {this.setState({query: event.target.value})}}
               onKeyPress={event => {
-                if(event.key = 'Enter') {
+                if(event.key === 'Enter') {
                   this.search()
                 }
               }}
@@ -57,11 +57,21 @@ class App extends Component {
           </InputGroup>
         </FormGroup>
 
-          <Profile
-            artist={this.state.artist}
-          />
+        {
+          this.state.artist !== null
+          ?
+            <div>
+              <Profile
+                artist={this.state.artist}
+              />
 
-        <div className="Gallery">Gallery</div>
+              <div className="Gallery">
+                Gallery
+              </div>
+            </div>
+          : <div></div>
+        }
+
       </div>
 
     )
