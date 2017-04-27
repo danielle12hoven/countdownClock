@@ -2,9 +2,40 @@ import React, { Component } from 'react';
 import './App.css';
 
 class Gallery extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playingURL: '',
+      audio: null,
+      playing: false
+    }
+  }
+
   playAudio(previewURL) {
     let audio = new Audio(previewURL)
-    audio.play()
+    if (!this.state.playing) {
+      audio.play();
+      this.setState({
+        playing: true,
+        playingURL: previewURL,
+        audio
+      })
+    } else {
+      if (this.state.playingURL === previewURL) {
+        this.state.audio.pause();
+        this.setState({
+          playing: false
+        })
+      } else {
+        this.state.audio.pause();
+        audio.play();
+        this.setState({
+          playing: true,
+          playingURL: previewURL,
+          audio
+        })
+      }
+    }
   }
 
   render() {
@@ -25,6 +56,15 @@ class Gallery extends Component {
                 className="track-img"
                 alt="track"
               />
+              <div className="track-play">
+                <div className="track-play-inner">
+                  {
+                    this.state.playingURL === track.preview_url
+                    ? <span>| |</span>
+                    : <span>&#9654;</span>
+                  }
+                </div>
+              </div>
               <p className="track-text">
                 {track.name}
               </p>
